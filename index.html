@@ -1,0 +1,1085 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Кабинет Алины Ковалёвой</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Unbounded:wght@500;600;700&display=swap">
+<style>
+/* Layout: dark petrol profile band on top, then two columns — main (route, homework, mistakes, words) and a side column led by the lesson balance printed like a restaurant guest check. */
+:root{
+  --bg:#F1F5F4;
+  --surface:#FFFFFF;
+  --paper:#FFFCF3;
+  --ink:#10262B;
+  --muted:#56686C;
+  --line:#DCE4E3;
+  --line-strong:#BFCDCC;
+  --chip:#E8EEED;
+  --knob:#FFFFFF;
+  --petrol:#0D5566;
+  --petrol-hover:#0A4654;
+  --petrol-ink:#FFFFFF;
+  --petrol-soft:#E2EEF0;
+  --band:#0C4352;
+  --band-ink:#EEF6F6;
+  --band-muted:#A9C8CC;
+  --band-line:rgba(238,246,246,.18);
+  --band-hover:rgba(238,246,246,.10);
+  --saffron:#E3A238;
+  --saffron-soft:#FAEBCF;
+  --saffron-ink:#6A4508;
+  --on-saffron:#2A1B03;
+  --ok:#257A48;
+  --ok-soft:#E0F1E6;
+  --err:#B53F2A;
+  --err-soft:#F9E4DF;
+  --shadow:rgba(16,38,43,.35);
+  --focus:#E3A238;
+
+  --font-display:"Unbounded","Golos Text",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-body:"Golos Text",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --font-ipa:"Lucida Grande","Segoe UI","DejaVu Sans",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0A1416; --surface:#112024; --paper:#16272B; --ink:#E3EEEF; --muted:#93A7AA;
+    --line:#21363B; --line-strong:#335056; --chip:#1A2E33; --knob:#E3EEEF;
+    --petrol:#62B8C9; --petrol-hover:#83CAD8; --petrol-ink:#062228; --petrol-soft:#14333A;
+    --band:#0E2C34; --band-ink:#E6F2F3; --band-muted:#8FB4B9; --band-line:rgba(230,242,243,.14); --band-hover:rgba(230,242,243,.08);
+    --saffron:#EDB452; --saffron-soft:#3A2C12; --saffron-ink:#F5D79C; --on-saffron:#2A1B03;
+    --ok:#5DC48B; --ok-soft:#12301F; --err:#F2806A; --err-soft:#3A1C16;
+    --shadow:rgba(0,0,0,.6); --focus:#EDB452;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0A1416; --surface:#112024; --paper:#16272B; --ink:#E3EEEF; --muted:#93A7AA;
+  --line:#21363B; --line-strong:#335056; --chip:#1A2E33; --knob:#E3EEEF;
+  --petrol:#62B8C9; --petrol-hover:#83CAD8; --petrol-ink:#062228; --petrol-soft:#14333A;
+  --band:#0E2C34; --band-ink:#E6F2F3; --band-muted:#8FB4B9; --band-line:rgba(230,242,243,.14); --band-hover:rgba(230,242,243,.08);
+  --saffron:#EDB452; --saffron-soft:#3A2C12; --saffron-ink:#F5D79C; --on-saffron:#2A1B03;
+  --ok:#5DC48B; --ok-soft:#12301F; --err:#F2806A; --err-soft:#3A1C16;
+  --shadow:rgba(0,0,0,.6); --focus:#EDB452;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3{text-wrap:balance}
+p{margin:0}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:6px}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important;animation:none!important}
+}
+
+.wrap{
+  max-width:1200px;margin:0 auto;
+  padding-left:max(clamp(16px,4vw,40px), env(safe-area-inset-left,0px));
+  padding-right:max(clamp(16px,4vw,40px), env(safe-area-inset-right,0px));
+}
+
+/* ---------- Profile band ---------- */
+.band{background:var(--band);color:var(--band-ink)}
+.band > .wrap{padding-block:18px 0}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px 20px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;color:inherit;text-decoration:none;font-weight:600;font-size:14px}
+.mark{display:grid;place-items:center;width:32px;height:32px;border-radius:8px;background:var(--saffron);color:var(--on-saffron);font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:.02em}
+.nav{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;max-width:100%;min-width:0}
+.nav::-webkit-scrollbar{display:none}
+.nav a{color:var(--band-muted);text-decoration:none;font-size:14px;padding:6px 12px;border-radius:999px;white-space:nowrap}
+.nav a:hover{color:var(--band-ink);background:var(--band-hover)}
+
+.hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:24px 56px;align-items:end;margin-top:40px}
+.who{display:flex;gap:20px;align-items:center;min-width:0}
+.avatar{flex:none;width:76px;height:76px;border-radius:50%;background:var(--saffron);color:var(--on-saffron);display:grid;place-items:center;font-family:var(--font-display);font-weight:600;font-size:22px}
+.eyebrow{font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--band-muted);margin-bottom:8px}
+h1{font-family:var(--font-display);font-weight:600;font-size:clamp(28px,4.2vw,44px);line-height:1.08;margin:0;letter-spacing:-.015em}
+.role{margin-top:10px;color:var(--band-muted);max-width:46ch}
+.goal{border:1px solid var(--band-line);border-radius:16px;padding:18px 20px;min-width:0}
+.goal .label{color:var(--band-muted)}
+.goal-text{font-size:17px;line-height:1.45;margin-bottom:14px}
+.countdown{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;color:var(--band-muted);font-size:14px}
+.countdown b{font-family:var(--font-display);font-size:30px;line-height:1;color:var(--saffron);font-weight:600;font-variant-numeric:tabular-nums}
+
+.facts{list-style:none;padding:0;margin:32px 0 0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));border-top:1px solid var(--band-line)}
+.facts li{padding:14px 16px 22px 0;display:flex;flex-direction:column;gap:2px;min-width:0}
+.facts span{font-size:12px;color:var(--band-muted)}
+.facts b{font-weight:600;font-size:15px;font-variant-numeric:tabular-nums}
+
+/* ---------- Two columns ---------- */
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 340px;grid-template-areas:"main side";gap:44px;padding-block:36px 64px;align-items:start}
+.side{grid-area:side;display:flex;flex-direction:column;gap:20px;min-width:0}
+.main{grid-area:main;display:flex;flex-direction:column;gap:64px;min-width:0}
+
+.label{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.muted{color:var(--muted)}
+.fine{font-size:12.5px;color:var(--muted);margin-top:10px}
+
+.btn{font-family:var(--font-body);font-weight:600;font-size:15px;line-height:1.2;border-radius:10px;padding:12px 18px;border:1px solid transparent;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:background .15s,border-color .15s,transform .1s;text-align:center}
+.btn:active{transform:translateY(1px)}
+.btn.primary{background:var(--petrol);color:var(--petrol-ink)}
+.btn.primary:hover{background:var(--petrol-hover)}
+.btn.ghost{background:transparent;border-color:var(--line-strong);color:var(--ink)}
+.btn.ghost:hover{border-color:var(--petrol);color:var(--petrol)}
+.btn.sm{font-size:14px;padding:8px 14px;border-radius:9px}
+.btn.wide{width:100%}
+.link-btn{background:none;border:0;padding:0;color:var(--petrol);font-weight:500;font-size:14px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+
+.say-btn{flex:none;width:30px;height:30px;border-radius:50%;border:1px solid var(--line-strong);background:transparent;color:var(--petrol);display:inline-grid;place-items:center;cursor:pointer;transition:border-color .15s,background .15s;vertical-align:middle}
+.say-btn:hover{border-color:var(--petrol);background:var(--petrol-soft)}
+.no-speech .say-btn{display:none}
+
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;white-space:nowrap;background:var(--chip);color:var(--muted)}
+.pill.ok{background:var(--ok-soft);color:var(--ok)}
+.pill.now{background:var(--saffron-soft);color:var(--saffron-ink)}
+.pill.next{background:var(--petrol-soft);color:var(--petrol)}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+
+/* ---------- Guest check (lesson balance) ---------- */
+.check{position:relative;background:var(--paper);padding:30px 22px 30px;font-family:var(--font-mono);font-size:13px;box-shadow:0 22px 32px -26px var(--shadow)}
+.check::before,.check::after{content:"";position:absolute;left:0;right:0;height:10px;background:radial-gradient(circle at 8px 0,var(--bg) 5.5px,transparent 6px) 0 0/16px 10px repeat-x;pointer-events:none}
+.check::before{top:0}
+.check::after{bottom:0;transform:rotate(180deg)}
+.check.flash{animation:flash 1s ease-out}
+@keyframes flash{0%{box-shadow:0 0 0 0 var(--saffron)}100%{box-shadow:0 0 0 16px transparent}}
+.check-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.check h2{font-family:var(--font-mono);font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin:0}
+.check-no{color:var(--muted);font-size:12px}
+.check-pkg{color:var(--muted);font-size:12px;margin-top:6px;padding-bottom:14px;border-bottom:1px dashed var(--line-strong)}
+.check-lines{padding:10px 0 4px}
+.ln{display:flex;align-items:baseline;gap:8px;padding:5px 0;font-variant-numeric:tabular-nums}
+.ln i{flex:1;border-bottom:1px dotted var(--line-strong);transform:translateY(-4px);min-width:12px}
+.ln.total{margin-top:8px;padding-top:14px;border-top:1px dashed var(--line-strong);font-weight:600;font-size:14px;text-transform:uppercase;letter-spacing:.06em}
+.ln.total b{font-family:var(--font-display);font-size:40px;line-height:.9;color:var(--petrol);letter-spacing:0}
+.dots{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 8px}
+.dot{width:12px;height:12px;border-radius:50%}
+.dot.used{background:var(--line-strong)}
+.dot.left{background:var(--saffron)}
+.dots-legend{display:flex;gap:14px;font-size:11.5px;color:var(--muted);align-items:center}
+.dots-legend span{display:inline-flex;align-items:center;gap:6px}
+.dots-legend i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.dots-legend .u{background:var(--line-strong)}
+.dots-legend .l{background:var(--saffron)}
+.low,.enough{font-family:var(--font-body);font-size:14px;line-height:1.5;margin:18px 0 16px;padding:12px 14px;border-radius:10px}
+.low{background:var(--saffron-soft);color:var(--saffron-ink)}
+.low .chip{display:inline-block;font-weight:700;font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+.enough{background:var(--ok-soft);color:var(--ok)}
+.check-fine{font-family:var(--font-body);font-size:12.5px;color:var(--muted);margin-top:10px;text-align:center}
+
+/* ---------- Side cards ---------- */
+.next-when{font-family:var(--font-display);font-size:20px;font-weight:600;line-height:1.2}
+.next-time{margin:4px 0 14px;color:var(--muted);font-size:14px}
+.next-topic{font-weight:600}
+.next-prep{font-size:14px;color:var(--muted);margin-top:4px}
+
+.note-head{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+.avatar.sm{width:40px;height:40px;font-size:13px;background:var(--petrol-soft);color:var(--petrol)}
+.note-head b{display:block;font-size:15px;line-height:1.3}
+.note-head span{font-size:12.5px;color:var(--muted)}
+.note p{font-size:14.5px;line-height:1.6}
+.note p + p{margin-top:10px}
+
+.hist summary{cursor:pointer;font-weight:600;display:flex;align-items:center;gap:10px;list-style:none}
+.hist summary::-webkit-details-marker{display:none}
+.hist summary .cnt{font-weight:400;color:var(--muted);font-size:13px;margin-left:auto}
+.hist summary::after{content:"";width:7px;height:7px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:translateY(-2px) rotate(45deg);transition:transform .15s;flex:none}
+.hist[open] summary::after{transform:translateY(2px) rotate(-135deg)}
+.hist-list{list-style:none;margin:12px 0 0;padding:0}
+.hist-list li{display:grid;grid-template-columns:62px minmax(0,1fr);gap:10px;padding:9px 0;border-top:1px solid var(--line);font-size:14px;line-height:1.4}
+.h-date{font-family:var(--font-mono);font-size:12px;color:var(--muted);padding-top:1px}
+
+/* ---------- Sections ---------- */
+.sect{scroll-margin-top:16px}
+.sect-head{margin-bottom:22px}
+.sect-head h2{font-family:var(--font-display);font-size:clamp(22px,2.6vw,28px);font-weight:600;margin:0 0 8px;letter-spacing:-.01em;line-height:1.2}
+.sect-head p{color:var(--muted);max-width:62ch}
+
+/* Route */
+.route{list-style:none;margin:0;padding:0}
+.route li{display:grid;grid-template-columns:40px minmax(0,1fr);gap:16px;position:relative;padding-bottom:22px}
+.route li:last-child{padding-bottom:0}
+.route li:not(:last-child)::before{content:"";position:absolute;left:19px;top:40px;bottom:0;width:2px;background:var(--line)}
+.route li.r-done:not(:last-child)::before{background:var(--petrol)}
+.node{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-family:var(--font-mono);font-size:13px;font-weight:600;border:2px solid var(--line-strong);background:var(--bg);color:var(--muted);position:relative;z-index:1}
+.r-done .node{background:var(--petrol);border-color:var(--petrol);color:var(--petrol-ink)}
+.r-now .node{border-color:var(--saffron);background:var(--saffron-soft);color:var(--saffron-ink)}
+.r-next .node{border-color:var(--petrol);color:var(--petrol)}
+.r-final .node{border-style:dashed;border-color:var(--saffron);color:var(--saffron-ink)}
+.r-body{padding-top:8px;min-width:0}
+.r-top{display:flex;justify-content:space-between;gap:6px 12px;flex-wrap:wrap;align-items:baseline}
+.r-top h3{font-size:16px;font-weight:600;margin:0;line-height:1.35}
+.phrase{margin-top:4px;color:var(--muted);font-size:15px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.phrase .say-btn{width:26px;height:26px}
+.rbar{height:5px;background:var(--line);border-radius:3px;margin-top:10px;max-width:300px;overflow:hidden}
+.rbar span{display:block;height:100%;background:var(--saffron);border-radius:3px}
+
+/* Homework */
+.hw-progress{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:20px;font-size:14px;font-weight:500}
+.segs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;width:220px;max-width:100%}
+.seg{height:6px;border-radius:3px;background:var(--line);transition:background .25s}
+.seg.on{background:var(--ok)}
+.ex-list{display:flex;flex-direction:column;gap:20px}
+.ex{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px 22px 18px;min-width:0}
+.ex-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px 16px;flex-wrap:wrap;margin-bottom:16px}
+.ex-head > div{min-width:0;flex:1 1 280px}
+.ex-num{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.ex h3{font-size:18px;font-weight:600;margin:4px 0 4px;line-height:1.3}
+.instr{color:var(--muted);font-size:14.5px}
+.state{font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--chip);color:var(--muted);white-space:nowrap}
+.state.done{background:var(--ok-soft);color:var(--ok)}
+
+.q,.fill-row,.build,.say{border-top:1px solid var(--line);padding:16px 0}
+.q-sit{font-weight:500;margin-bottom:10px}
+.q-n{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--chip);color:var(--muted);font-family:var(--font-mono);font-size:11px;font-weight:600;margin-right:10px;vertical-align:1px}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{text-align:left;font-size:16px;padding:10px 14px;border-radius:10px;border:1px solid var(--line-strong);background:var(--bg);color:var(--ink);cursor:pointer;display:flex;align-items:center;gap:10px;transition:border-color .15s,background .15s}
+.opt:hover:not(:disabled){border-color:var(--petrol)}
+.opt:disabled{cursor:default}
+.opt .mk{margin-left:auto;display:none}
+.opt.right{border-color:var(--ok);background:var(--ok-soft)}
+.opt.right .mk{display:inline-grid;color:var(--ok)}
+.opt.wrong{border-color:var(--err);background:var(--err-soft)}
+.opt.wrong .mk{display:inline-grid;color:var(--err)}
+.opt:disabled:not(.right):not(.wrong){opacity:.55}
+.why{margin-top:10px;font-size:14.5px;color:var(--muted)}
+.t-ok{color:var(--ok)}
+.t-err{color:var(--err)}
+.ex-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:14px}
+.ex-foot p{font-size:14px;color:var(--muted)}
+
+.fill-line{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 8px;font-size:17px}
+.blank{font:inherit;font-size:16px;width:6.5em;padding:3px 8px;border:none;border-bottom:2px solid var(--line-strong);background:var(--bg);color:var(--ink);border-radius:6px 6px 0 0}
+.blank:focus-visible{outline:none;border-bottom-color:var(--petrol)}
+.blank.ok{border-bottom-color:var(--ok);background:var(--ok-soft)}
+.blank.err{border-bottom-color:var(--err);background:var(--err-soft)}
+.fill-ru{font-size:13.5px;color:var(--muted);margin-top:6px}
+.fix{font-size:13.5px;color:var(--err);margin-top:4px}
+.fill-msg{font-size:14px;color:var(--muted)}
+
+.answer{min-height:50px;display:flex;flex-wrap:wrap;align-content:flex-start;gap:8px;padding:8px;border:1.5px dashed var(--line-strong);border-radius:10px;margin:4px 0 10px;transition:border-color .15s,background .15s}
+.answer:empty::before{content:"Нажимайте на слова ниже по порядку";color:var(--muted);font-size:14px;padding:6px 4px}
+.answer.ok{border-style:solid;border-color:var(--ok);background:var(--ok-soft)}
+.answer.err{border-color:var(--err)}
+.bank{display:flex;flex-wrap:wrap;gap:8px;min-height:10px}
+.wchip{font-size:15px;padding:7px 12px;border-radius:8px;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);cursor:pointer;box-shadow:0 2px 0 var(--line-strong);transition:transform .1s,border-color .15s}
+.wchip:hover:not(:disabled){border-color:var(--petrol)}
+.wchip:active{transform:translateY(1px)}
+.wchip:disabled{cursor:default;box-shadow:none}
+.build-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:10px;min-height:30px}
+.build-msg{font-size:14px;display:flex;align-items:center;gap:8px}
+
+.model{margin-top:12px;padding:14px 16px;border-radius:12px;background:var(--bg)}
+.model-line{display:flex;gap:12px;align-items:flex-start}
+.model-line p{font-size:17px;line-height:1.5;flex:1;min-width:0}
+.keys{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:12px;font-size:12.5px;color:var(--muted)}
+.key{font-size:12.5px;padding:3px 8px;border-radius:6px;background:var(--saffron-soft);color:var(--saffron-ink)}
+.say-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:2px}
+.mark-btn[aria-pressed="true"]{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
+
+/* Mistakes */
+.mlist{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.mrow{display:grid;grid-template-columns:210px minmax(0,1fr);gap:10px 32px;padding:22px 0;border-bottom:1px solid var(--line)}
+.m-meta{display:flex;flex-direction:column;gap:8px;align-items:flex-start;min-width:0}
+.tag{font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.m-title{font-weight:600;font-size:15px;line-height:1.35}
+.freq{display:flex;align-items:center;gap:4px;font-size:12px;color:var(--muted)}
+.freq i{width:8px;height:8px;border-radius:50%;background:var(--line-strong)}
+.freq i.on{background:var(--err)}
+.freq span{margin-left:6px}
+.trend{font-size:12px;color:var(--ok);font-weight:500}
+.m-pair{display:flex;flex-direction:column;gap:8px;min-width:0}
+.bad,.good{display:flex;align-items:center;gap:10px;font-size:17px;line-height:1.4}
+.ico{flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center}
+.bad .ico{background:var(--err-soft);color:var(--err)}
+.good .ico{background:var(--ok-soft);color:var(--ok)}
+.bad .txt{text-decoration:line-through;text-decoration-color:var(--err);text-decoration-thickness:2px;color:var(--muted)}
+.good .txt{font-weight:500}
+.txt{min-width:0}
+.ipa{font-family:var(--font-ipa);font-size:15px;color:var(--muted);font-weight:400}
+.m-why{margin-top:4px;color:var(--muted);font-size:14.5px;max-width:60ch}
+
+/* Words */
+.words-tools{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.switch{display:inline-flex;align-items:center;gap:10px;font-size:14px;cursor:pointer;user-select:none;-webkit-user-select:none;position:relative}
+.switch input{position:absolute;opacity:0;width:1px;height:1px;margin:0}
+.sw{flex:none;width:38px;height:22px;border-radius:11px;background:var(--line-strong);position:relative;transition:background .15s}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:var(--knob);transition:transform .15s}
+.switch input:checked + .sw{background:var(--petrol)}
+.switch input:checked + .sw::after{transform:translateX(16px)}
+.switch input:focus-visible + .sw{outline:3px solid var(--focus);outline-offset:2px}
+.wcount{font-size:13px;color:var(--muted)}
+.wlist{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.wrow{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) 30px;gap:4px 20px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.w-en{font-weight:600;font-size:16px;min-width:0}
+.w-en .ipa{display:block;font-size:13px;margin-top:1px}
+.w-ru{font-size:15px;color:var(--ink);background:none;border:0;padding:4px 6px;margin:-4px -6px;text-align:left;border-radius:6px;cursor:default;min-width:0;transition:filter .2s}
+.quiz .w-ru{cursor:pointer;filter:blur(6px);user-select:none;-webkit-user-select:none}
+.quiz .w-ru.shown{filter:none}
+
+/* Dialog */
+dialog{border:none;padding:0;border-radius:18px;background:var(--surface);color:var(--ink);width:min(520px,calc(100vw - 32px));max-height:calc(100dvh - 32px);overflow:auto;box-shadow:0 30px 60px -20px rgba(0,0,0,.5)}
+dialog::backdrop{background:rgba(6,18,22,.62)}
+.dlg{padding:24px}
+.dlg-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.dlg h2{font-family:var(--font-display);font-size:22px;font-weight:600;margin:0;line-height:1.2}
+.x{flex:none;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;display:grid;place-items:center}
+.x:hover{border-color:var(--line-strong)}
+.dlg-lead{color:var(--muted);margin-top:8px;font-size:14.5px}
+.plans{display:flex;flex-direction:column;gap:10px;margin:18px 0}
+.plan{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:3px 14px;align-items:center;padding:14px 16px;border:1.5px solid var(--line-strong);border-radius:12px;cursor:pointer;transition:border-color .15s,background .15s}
+.plan:hover{border-color:var(--petrol)}
+.plan.sel{border-color:var(--petrol);background:var(--petrol-soft)}
+.plan input{grid-row:span 2;accent-color:var(--petrol);width:18px;height:18px;margin:0}
+.plan-name{font-weight:600;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.plan-price{font-family:var(--font-mono);font-weight:600;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.plan-sub{font-size:13px;color:var(--muted)}
+.plan-per{font-size:12px;color:var(--muted);text-align:right;white-space:nowrap}
+.badge{font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--saffron);color:var(--on-saffron);letter-spacing:.02em}
+.demo-note{font-size:12.5px;color:var(--muted);text-align:center;margin-top:12px}
+.done-ico{width:56px;height:56px;border-radius:50%;background:var(--ok-soft);color:var(--ok);display:grid;place-items:center;margin-bottom:16px}
+.done-text{margin:10px 0 6px;font-size:15.5px}
+
+/* Footer */
+.foot{border-top:1px solid var(--line)}
+.foot .wrap{padding-block:24px 40px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;gap:8px 24px;flex-wrap:wrap}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1020px){
+  .layout{grid-template-columns:minmax(0,1fr);grid-template-areas:"side" "main";gap:48px}
+  .side{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
+}
+@media (max-width:900px){
+  .hero{grid-template-columns:minmax(0,1fr);margin-top:32px}
+  .facts{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (max-width:680px){
+  .side{display:flex}
+  .mrow{grid-template-columns:minmax(0,1fr)}
+  .wrow{grid-template-columns:minmax(0,1fr) minmax(0,1fr) 30px;gap:4px 12px}
+}
+@media (max-width:520px){
+  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .avatar{width:58px;height:58px;font-size:18px}
+  .who{gap:14px}
+  .ex{padding:18px 16px 14px}
+  .dlg{padding:20px 18px}
+  .plan{padding:12px 14px;gap:3px 10px}
+  .bad,.good,.fill-line,.model-line p{font-size:16px}
+  .wrow{grid-template-columns:minmax(0,1fr) 30px}
+  .wrow .w-ru{grid-column:1;grid-row:2}
+  .wrow .say-btn{grid-column:2;grid-row:1 / span 2}
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+  <header class="band" id="top">
+    <div class="wrap">
+      <div class="topbar">
+        <a class="brand" href="#top"><span class="mark">EN</span><span>Личный кабинет ученика</span></a>
+        <nav class="nav" aria-label="Разделы страницы">
+          <a href="#route">Маршрут</a>
+          <a href="#homework">Задания</a>
+          <a href="#mistakes">Ошибки</a>
+          <a href="#words">Словарь</a>
+        </nav>
+      </div>
+
+      <div class="hero">
+        <div class="who">
+          <div class="avatar" aria-hidden="true">АК</div>
+          <div>
+            <p class="eyebrow">Английский для работы · ресторанный сервис</p>
+            <h1>Алина Ковалёва</h1>
+            <p class="role">Официант. С 1 февраля 2027 года работает в ресторане при отеле в Дубае.</p>
+          </div>
+        </div>
+        <div class="goal">
+          <p class="label">Цель обучения</p>
+          <p class="goal-text">Уверенно обслуживать гостей на английском: встретить, принять заказ, посоветовать блюдо, решить проблему и рассчитать.</p>
+          <p class="countdown"><b id="daysLeft">82</b><span id="daysWord">дня до начала работы</span></p>
+        </div>
+      </div>
+
+      <ul class="facts">
+        <li><span>Уровень</span><b>A2+ → цель B1</b></li>
+        <li><span>Преподаватель</span><b>Мария Ли</b></li>
+        <li><span>Расписание</span><b>Пн и Чт, 19:00 МСК</b></li>
+        <li><span>Пройдено</span><b>13 уроков</b></li>
+        <li><span>Домашние задания</span><b>11 из 13</b></li>
+        <li><span>Слов в словаре</span><b>148</b></li>
+      </ul>
+    </div>
+  </header>
+
+  <div class="wrap layout">
+    <aside class="side" aria-label="Пакет и расписание">
+      <section class="check" id="check" aria-labelledby="balanceTitle">
+        <div class="check-head">
+          <h2 id="balanceTitle">Баланс уроков</h2>
+          <span class="check-no">№ 0247</span>
+        </div>
+        <p class="check-pkg" id="pkgLine">Пакет «Интенсив 16» · действует до 30.11.2026</p>
+        <div class="check-lines">
+          <div class="ln"><span>Куплено уроков</span><i></i><span id="bPurchased">16</span></div>
+          <div class="ln"><span>Проведено</span><i></i><span id="bUsed">13</span></div>
+          <div class="ln total"><span>Осталось</span><i></i><b id="bLeft">3</b></div>
+        </div>
+        <div class="dots" id="dots" aria-hidden="true"></div>
+        <p class="dots-legend" aria-hidden="true"><span><i class="u"></i>проведён</span><span><i class="l"></i>впереди</span></p>
+        <div class="low" id="lowNote">
+          <span class="chip">Осталось мало</span>
+          <p>Последний урок пакета: <b id="lastLessonDate">чт, 19 ноября</b>. Продлите заранее, чтобы сохранить своё время в расписании.</p>
+        </div>
+        <p class="enough" id="enoughNote" hidden></p>
+        <button class="btn primary wide" id="renewBtn" type="button">Продлить пакет</button>
+        <p class="check-fine">Оставшиеся уроки не сгорают и переносятся в новый пакет.</p>
+      </section>
+
+      <section class="card">
+        <p class="label">Следующий урок</p>
+        <p class="next-when">Чт, 12 ноября</p>
+        <p class="next-time">19:00–20:00 МСК · онлайн · урок 14</p>
+        <p class="next-topic">Аллергии и особые запросы гостей</p>
+        <p class="next-prep">Подготовьте упражнения 2 и 4 из домашнего задания.</p>
+        <p class="fine">Перенести урок можно не позднее чем за 24 часа до начала.</p>
+      </section>
+
+      <section class="card note" aria-label="Заметка преподавателя">
+        <div class="note-head">
+          <span class="avatar sm" aria-hidden="true">МЛ</span>
+          <div><b>Мария Ли</b><span>Заметка после урока 9 ноября</span></div>
+        </div>
+        <p>Алина, отличный урок! Вы уверенно принимаете заказ и живо рассказываете о блюдах. Фраза <i lang="en">“I’d recommend the sea bass, it’s grilled with lemon and herbs”</i> прозвучала как у настоящего официанта.</p>
+        <p>Что подтянуть: в вопросах теряется вспомогательный глагол (<i lang="en">How you want…</i> вместо <i lang="en">How would you like…</i>). До четверга сделайте упражнения 2 и 4 и перечитайте раздел «Частые ошибки».</p>
+      </section>
+
+      <details class="card hist">
+        <summary>История уроков <span class="cnt">13 проведено</span></summary>
+        <ol class="hist-list">
+          <li><span class="h-date">9 нояб.</span><span>Урок 13 · Приём заказа: особые пожелания</span></li>
+          <li><span class="h-date">5 нояб.</span><span>Урок 12 · Приём заказа: напитки</span></li>
+          <li><span class="h-date">2 нояб.</span><span>Урок 11 · Меню: рыба и гарниры</span></li>
+          <li><span class="h-date">29 окт.</span><span>Урок 10 · Меню: как описать вкус блюда</span></li>
+          <li><span class="h-date">26 окт.</span><span>Урок 9 · Встреча гостей: повторение</span></li>
+        </ol>
+      </details>
+    </aside>
+
+    <main class="main">
+      <section class="sect" id="route" aria-labelledby="routeTitle">
+        <div class="sect-head">
+          <h2 id="routeTitle">Маршрут к цели</h2>
+          <p>Курс «Английский для ресторана»: 7 модулей и пробное собеседование в конце. Два модуля освоены, третий в работе.</p>
+        </div>
+        <ol class="route" id="routeList"></ol>
+      </section>
+
+      <section class="sect" id="homework" aria-labelledby="hwTitle">
+        <div class="sect-head">
+          <h2 id="hwTitle">Домашнее задание</h2>
+          <p>К уроку 12 ноября, примерно 20 минут. Ответы проверяются сразу, любое упражнение можно пройти заново.</p>
+        </div>
+        <div class="hw-progress" aria-live="polite">
+          <div class="segs" aria-hidden="true"><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
+          <span id="hwText">Выполнено 0 из 4</span>
+        </div>
+
+        <div class="ex-list">
+          <article class="ex" id="ex1">
+            <div class="ex-head">
+              <div>
+                <p class="ex-num">Упражнение 1</p>
+                <h3>Как сказать вежливо?</h3>
+                <p class="instr">Выберите фразу, которая подходит официанту в хорошем ресторане.</p>
+              </div>
+              <span class="state" id="ex1State">Ответов: 0 из 5</span>
+            </div>
+            <div class="ex-body" id="ex1Body"></div>
+            <div class="ex-foot" id="ex1Foot" hidden>
+              <p id="ex1Score"></p>
+              <button class="btn ghost sm" type="button" id="ex1Reset">Пройти заново</button>
+            </div>
+          </article>
+
+          <article class="ex" id="ex2">
+            <div class="ex-head">
+              <div>
+                <p class="ex-num">Упражнение 2</p>
+                <h3>Вставьте пропущенное слово</h3>
+                <p class="instr">Одно слово в каждом пропуске. Подсказка: чаще всего это вспомогательный глагол.</p>
+              </div>
+              <span class="state" id="ex2State">Не проверено</span>
+            </div>
+            <form id="ex2Form" novalidate>
+              <div id="ex2Body"></div>
+              <div class="ex-foot">
+                <p class="fill-msg" id="ex2Msg" aria-live="polite">Заполните пропуски и нажмите «Проверить».</p>
+                <div style="display:flex;gap:8px;flex-wrap:wrap">
+                  <button class="btn ghost sm" type="button" id="ex2Reset" hidden>Очистить</button>
+                  <button class="btn primary sm" type="submit">Проверить</button>
+                </div>
+              </div>
+            </form>
+          </article>
+
+          <article class="ex" id="ex3">
+            <div class="ex-head">
+              <div>
+                <p class="ex-num">Упражнение 3</p>
+                <h3>Соберите фразу</h3>
+                <p class="instr">Нажимайте на слова по порядку. Чтобы убрать слово, нажмите на него ещё раз.</p>
+              </div>
+              <span class="state" id="ex3State">Собрано 0 из 2</span>
+            </div>
+            <div id="ex3Body"></div>
+          </article>
+
+          <article class="ex" id="ex4">
+            <div class="ex-head">
+              <div>
+                <p class="ex-num">Упражнение 4</p>
+                <h3>Скажите вслух</h3>
+                <p class="instr">Сначала ответьте гостю вслух сами, потом откройте пример, сравните и послушайте его.</p>
+              </div>
+              <span class="state" id="ex4State">Проговорено 0 из 3</span>
+            </div>
+            <div id="ex4Body"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="sect" id="mistakes" aria-labelledby="mTitle">
+        <div class="sect-head">
+          <h2 id="mTitle">Частые ошибки</h2>
+          <p>Мария отмечает их на каждом уроке. Красные точки показывают, на скольких из последних 5 уроков встретилась ошибка.</p>
+        </div>
+        <ul class="mlist" id="mList"></ul>
+      </section>
+
+      <section class="sect" id="words" aria-labelledby="wTitle">
+        <div class="sect-head">
+          <h2 id="wTitle">Словарь уроков</h2>
+          <p>Слова и выражения с последних трёх уроков. Нажмите на динамик, чтобы услышать произношение. В режиме проверки перевод скрыт: вспомните его сами и нажмите на строку.</p>
+        </div>
+        <div class="words-tools">
+          <label class="switch" for="quizToggle"><input type="checkbox" id="quizToggle"><span class="sw" aria-hidden="true"></span>Проверить себя: скрыть перевод</label>
+          <span class="wcount" id="wCount"></span>
+        </div>
+        <ul class="wlist" id="wList"></ul>
+      </section>
+    </main>
+  </div>
+
+  <footer class="foot">
+    <div class="wrap">
+      <p>Вопросы по расписанию и оплате — администратору школы, по урокам — преподавателю в чате.</p>
+      <p>Демо-страница: ученик, преподаватель, цены и данные вымышленные.</p>
+    </div>
+  </footer>
+
+  <dialog id="renewDialog" aria-labelledby="renewTitle">
+    <div class="dlg" id="renewChoose">
+      <div class="dlg-head">
+        <h2 id="renewTitle">Продлить пакет</h2>
+        <button class="x" type="button" data-close aria-label="Закрыть"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
+      </div>
+      <p class="dlg-lead" id="renewLead">Индивидуальные уроки по 60 минут с Марией Ли, по понедельникам и четвергам. Оставшиеся уроки добавятся к новому пакету.</p>
+      <div class="plans" id="plans" role="radiogroup" aria-label="Размер пакета"></div>
+      <button class="btn primary wide" type="button" id="renewConfirm">Продлить</button>
+      <p class="demo-note">Демо-версия: оплата не проводится, баланс меняется только на этой странице.</p>
+    </div>
+    <div class="dlg" id="renewDone" hidden>
+      <div class="dlg-head">
+        <div class="done-ico"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <button class="x" type="button" data-close aria-label="Закрыть"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
+      </div>
+      <h2>Пакет продлён</h2>
+      <p class="done-text" id="doneText"></p>
+      <p class="dlg-lead">Это демонстрация: оплата не проводилась. В рабочей версии здесь откроется страница оплаты школы.</p>
+      <button class="btn primary wide" type="button" data-close style="margin-top:18px">Готово</button>
+    </div>
+  </dialog>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  document.documentElement.lang = 'ru';
+
+  var $ = function(s, r){ return (r || document).querySelector(s); };
+  var $$ = function(s, r){ return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function plural(n, one, few, many){
+    n = Math.abs(n) % 100; var m = n % 10;
+    if (n > 10 && n < 20) return many;
+    if (m === 1) return one;
+    if (m >= 2 && m <= 4) return few;
+    return many;
+  }
+  function lessonsWord(n){ return plural(n, 'урок', 'урока', 'уроков'); }
+  function fmt(n){ try { return n.toLocaleString('ru-RU'); } catch (e) { return String(n); } }
+  var MON = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+  var DOW = ['вс','пн','вт','ср','чт','пт','сб'];
+  function fdate(d){ return d.getDate() + ' ' + MON[d.getMonth()]; }
+  function fdow(d){ return DOW[d.getDay()] + ', ' + fdate(d); }
+
+  var WORK_START = new Date(2027, 1, 1);
+  var FIRST_LESSON = new Date(2026, 10, 12); // чт, 12 ноября 2026
+
+  /* k-й предстоящий урок по расписанию пн/чт */
+  function lessonDate(k){
+    var d = new Date(FIRST_LESSON.getTime()), c = 0, guard = 0;
+    if (k < 1) return d;
+    while (guard++ < 2000) {
+      var w = d.getDay();
+      if (w === 1 || w === 4) { c++; if (c === k) return new Date(d.getTime()); }
+      d.setDate(d.getDate() + 1);
+    }
+    return d;
+  }
+
+  var I = {
+    speak: '<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M4 9.5v5h3.6l4.9 4V5.5l-4.9 4H4z" fill="currentColor"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.8 7.8 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
+    ok: '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    x: '<svg viewBox="0 0 24 24" width="11" height="11" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>',
+    flag: '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6 21V4h11l-2.5 4L17 12H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+  };
+
+  /* ---------- Speech ---------- */
+  var canSpeak = ('speechSynthesis' in window) && ('SpeechSynthesisUtterance' in window);
+  var voice = null;
+  function pickVoice(){
+    try {
+      var vs = window.speechSynthesis.getVoices() || [];
+      voice = vs.filter(function(v){ return /en[-_]GB/i.test(v.lang); })[0] || vs.filter(function(v){ return /^en/i.test(v.lang); })[0] || null;
+    } catch (e) { voice = null; }
+  }
+  if (canSpeak) { pickVoice(); try { window.speechSynthesis.onvoiceschanged = pickVoice; } catch (e) {} }
+  else { document.documentElement.classList.add('no-speech'); }
+  function speak(text){
+    if (!canSpeak) return;
+    try {
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(text);
+      u.lang = voice ? voice.lang : 'en-GB';
+      if (voice) u.voice = voice;
+      u.rate = 0.92;
+      window.speechSynthesis.speak(u);
+    } catch (e) {}
+  }
+  function sayBtn(text, label){
+    return '<button type="button" class="say-btn" data-say="' + esc(text) + '" aria-label="Послушать: ' + esc(label || text) + '">' + I.speak + '</button>';
+  }
+  document.addEventListener('click', function(e){
+    var b = e.target.closest ? e.target.closest('[data-say]') : null;
+    if (b) speak(b.getAttribute('data-say'));
+  });
+
+  /* ---------- Countdown ---------- */
+  (function(){
+    var t = new Date(); t.setHours(0,0,0,0);
+    var days = Math.round((WORK_START - t) / 86400000);
+    if (days > 0) {
+      $('#daysLeft').textContent = days;
+      $('#daysWord').textContent = plural(days, 'день', 'дня', 'дней') + ' до начала работы';
+    } else {
+      $('#daysLeft').textContent = '✓';
+      $('#daysWord').textContent = 'работа уже началась';
+    }
+  })();
+
+  /* ---------- Balance ---------- */
+  var bal = { purchased: 16, used: 13, pkg: 'Интенсив 16', until: '30.11.2026' };
+  var PLANS = [
+    { n: 8,  name: 'Интенсив 8',  per: 1800, until: '31.01.2027' },
+    { n: 16, name: 'Интенсив 16', per: 1700, until: '31.03.2027' },
+    { n: 24, name: 'Интенсив 24', per: 1600, until: '31.05.2027' }
+  ];
+  var sel = 24;
+
+  function renderBalance(){
+    var left = bal.purchased - bal.used;
+    $('#bPurchased').textContent = bal.purchased;
+    $('#bUsed').textContent = bal.used;
+    $('#bLeft').textContent = left;
+    $('#pkgLine').textContent = 'Пакет «' + bal.pkg + '» · действует до ' + bal.until;
+    var dots = '';
+    for (var i = 0; i < bal.purchased; i++) dots += '<span class="dot ' + (i < bal.used ? 'used' : 'left') + '"></span>';
+    $('#dots').innerHTML = dots;
+    var last = lessonDate(left);
+    $('#lastLessonDate').textContent = fdow(last);
+    var low = left <= 4;
+    $('#lowNote').hidden = !low;
+    $('#enoughNote').hidden = low;
+    if (!low) $('#enoughNote').textContent = 'Уроков хватит примерно до ' + fdate(last) + (last >= WORK_START ? ', то есть до начала работы.' : '.');
+  }
+
+  function renderPlans(){
+    var left = bal.purchased - bal.used;
+    $('#renewLead').textContent = 'Индивидуальные уроки по 60 минут с Марией Ли, по понедельникам и четвергам. Оставшиеся ' + left + ' ' + lessonsWord(left) + ' добавятся к новому пакету.';
+    $('#plans').innerHTML = PLANS.map(function(p){
+      var total = left + p.n, end = lessonDate(total), covers = end >= WORK_START;
+      return '<label class="plan' + (p.n === sel ? ' sel' : '') + '" for="plan' + p.n + '">' +
+        '<input type="radio" name="plan" value="' + p.n + '" id="plan' + p.n + '"' + (p.n === sel ? ' checked' : '') + '>' +
+        '<span class="plan-name">' + p.n + ' ' + lessonsWord(p.n) + (covers ? ' <span class="badge">Хватит до начала работы</span>' : '') + '</span>' +
+        '<span class="plan-price">' + fmt(p.n * p.per) + ' ₽</span>' +
+        '<span class="plan-sub">С остатком ' + total + ' ' + lessonsWord(total) + ', примерно до ' + fdate(end) + '</span>' +
+        '<span class="plan-per">' + fmt(p.per) + ' ₽ за урок</span>' +
+        '</label>';
+    }).join('');
+    updateConfirm();
+  }
+  function updateConfirm(){
+    var p = PLANS.filter(function(x){ return x.n === sel; })[0];
+    $('#renewConfirm').textContent = 'Продлить на ' + p.n + ' ' + lessonsWord(p.n) + ' · ' + fmt(p.n * p.per) + ' ₽';
+  }
+
+  var dlg = $('#renewDialog');
+  function openDlg(){
+    $('#renewChoose').hidden = false; $('#renewDone').hidden = true;
+    renderPlans();
+    try { if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', ''); }
+    catch (e) { dlg.setAttribute('open', ''); }
+  }
+  function closeDlg(){ try { if (dlg.close) dlg.close(); else dlg.removeAttribute('open'); } catch (e) { dlg.removeAttribute('open'); } }
+  $('#renewBtn').addEventListener('click', openDlg);
+  dlg.addEventListener('click', function(e){
+    if (e.target === dlg) closeDlg();
+    if (e.target.closest && e.target.closest('[data-close]')) closeDlg();
+  });
+  $('#plans').addEventListener('change', function(e){
+    if (e.target.name !== 'plan') return;
+    sel = +e.target.value;
+    $$('.plan', $('#plans')).forEach(function(l){ l.classList.toggle('sel', l.querySelector('input').checked); });
+    updateConfirm();
+  });
+  $('#renewConfirm').addEventListener('click', function(){
+    var p = PLANS.filter(function(x){ return x.n === sel; })[0];
+    bal.purchased += p.n; bal.pkg = p.name; bal.until = p.until;
+    renderBalance();
+    var left = bal.purchased - bal.used;
+    $('#doneText').textContent = 'Добавлено ' + p.n + ' ' + lessonsWord(p.n) + '. Теперь на балансе ' + left + ' ' + lessonsWord(left) + ': при занятиях по понедельникам и четвергам этого хватит примерно до ' + fdate(lessonDate(left)) + '.';
+    $('#renewChoose').hidden = true; $('#renewDone').hidden = false;
+    var c = $('#check'); c.classList.remove('flash'); void c.offsetWidth; c.classList.add('flash');
+  });
+  renderBalance();
+
+  /* ---------- Route ---------- */
+  var ROUTE = [
+    { t: 'Встреча и рассадка гостей', p: 'Good evening! Do you have a reservation?', s: 'done' },
+    { t: 'Меню и рекомендации', p: 'I’d recommend the grilled sea bass.', s: 'done' },
+    { t: 'Приём заказа', p: 'Are you ready to order?', s: 'now', pct: 70 },
+    { t: 'Аллергии и особые запросы', p: 'Do you have any allergies?', s: 'next' },
+    { t: 'Жалобы и извинения', p: 'I’m so sorry about that. Let me fix it right away.', s: 'later' },
+    { t: 'Счёт и оплата', p: 'Would you like to pay by card or in cash?', s: 'later' },
+    { t: 'Small talk с гостями', p: 'Is this your first time in Dubai?', s: 'later' },
+    { t: 'Пробное собеседование', p: 'Интервью с менеджером ресторана на английском: о себе, об опыте и о сложных ситуациях с гостями.', s: 'final', ru: true }
+  ];
+  $('#routeList').innerHTML = ROUTE.map(function(r, i){
+    var node, pill, extra = '';
+    if (r.s === 'done') { node = I.ok; pill = '<span class="pill ok">Освоено</span>'; }
+    else if (r.s === 'now') { node = i + 1; pill = '<span class="pill now">В работе · ' + r.pct + '%</span>';
+      extra = '<div class="rbar" role="progressbar" aria-valuenow="' + r.pct + '" aria-valuemin="0" aria-valuemax="100" aria-label="Прогресс модуля"><span style="width:' + r.pct + '%"></span></div>'; }
+    else if (r.s === 'next') { node = i + 1; pill = '<span class="pill next">Начинаем 12 ноября</span>'; }
+    else if (r.s === 'final') { node = I.flag; pill = '<span class="pill now">Январь 2027</span>'; }
+    else { node = i + 1; pill = '<span class="pill">Впереди</span>'; }
+    var phrase = r.ru ? '<p class="phrase">' + r.p + '</p>'
+      : '<p class="phrase"><span lang="en">“' + r.p + '”</span>' + sayBtn(r.p) + '</p>';
+    return '<li class="r-' + r.s + '"><span class="node">' + node + '</span><div class="r-body"><div class="r-top"><h3>' + (r.s === 'final' ? 'Финал: ' : '') + r.t + '</h3>' + pill + '</div>' + phrase + extra + '</div></li>';
+  }).join('');
+
+  /* ---------- Homework progress ---------- */
+  var hwDone = [false, false, false, false];
+  function setDone(i, v){
+    hwDone[i] = v;
+    var n = hwDone.filter(Boolean).length;
+    $$('.seg').forEach(function(s, k){ s.classList.toggle('on', hwDone[k]); });
+    $('#hwText').textContent = n === 4 ? 'Всё выполнено. До встречи 12 ноября!' : 'Выполнено ' + n + ' из 4';
+  }
+  function setState(id, text, done){ var el = $(id); el.textContent = text; el.classList.toggle('done', !!done); }
+
+  /* ---------- Exercise 1 ---------- */
+  var EX1 = [
+    { sit: 'Гости сели за стол и закрыли меню. Вы подходите принять заказ.',
+      opts: ['What do you want?', 'Are you ready to order?', 'Say your order, please.'], a: 1,
+      why: '<i lang="en">What do you want?</i> звучит резко. С гостями говорим <i lang="en">Are you ready to order?</i> или <i lang="en">What would you like?</i>' },
+    { sit: 'Гость спрашивает, что вы посоветуете из рыбы.',
+      opts: ['I recommend fish of the day.', 'I’d recommend the fish of the day.', 'I am recommend the fish of the day.'], a: 1,
+      why: '<i lang="en">I’d recommend</i> звучит мягче, чем <i lang="en">I recommend</i>. И не забываем <i lang="en">the</i>: это конкретное блюдо из меню.' },
+    { sit: 'Гость заказал ягнёнка, но он закончился.',
+      opts: ['We don’t have it. Choose another.', 'Lamb is finish.', 'I’m afraid we’ve run out of the lamb today.'], a: 2,
+      why: '<i lang="en">I’m afraid…</i> смягчает плохую новость, а <i lang="en">run out of</i> значит «закончиться».' },
+    { sit: 'Гости ждали горячее 25 минут.',
+      opts: ['Sorry to keep you waiting.', 'Sorry for waiting.', 'Sorry, you waited.'], a: 0,
+      why: 'Извиняемся за то, что ждать заставили мы: <i lang="en">Sorry to keep you waiting</i>. Ещё вариант: <i lang="en">Thank you for your patience</i>.' },
+    { sit: 'Гость просит счёт.',
+      opts: ['I bring the bill.', 'I am bringing bill.', 'Of course, I’ll bring you the bill right away.'], a: 2,
+      why: 'Обещание сделать что-то сейчас — <i lang="en">I’ll</i>. В Дубае обычно говорят <i lang="en">bill</i>, американское <i lang="en">check</i> тоже поймут.' }
+  ];
+  var ex1 = { answered: 0, correct: 0 };
+  function renderEx1(){
+    ex1 = { answered: 0, correct: 0 };
+    $('#ex1Body').innerHTML = EX1.map(function(q, i){
+      return '<div class="q" data-i="' + i + '"><p class="q-sit"><span class="q-n">' + (i + 1) + '</span>' + q.sit + '</p>' +
+        '<div class="opts">' + q.opts.map(function(o, j){
+          return '<button type="button" class="opt" data-j="' + j + '" lang="en"><span>' + o + '</span><span class="mk">' + (j === q.a ? I.ok : I.x) + '</span></button>';
+        }).join('') + '</div><p class="why" aria-live="polite" hidden></p></div>';
+    }).join('');
+    $('#ex1Foot').hidden = true;
+    setState('#ex1State', 'Ответов: 0 из ' + EX1.length, false);
+    setDone(0, false);
+  }
+  $('#ex1Body').addEventListener('click', function(e){
+    var b = e.target.closest('.opt'); if (!b || b.disabled) return;
+    var qd = b.closest('.q'), q = EX1[+qd.getAttribute('data-i')], j = +b.getAttribute('data-j');
+    $$('.opt', qd).forEach(function(o, k){ o.disabled = true; if (k === q.a) o.classList.add('right'); });
+    var good = j === q.a;
+    if (!good) b.classList.add('wrong');
+    var why = $('.why', qd);
+    why.innerHTML = '<b class="' + (good ? 't-ok' : 't-err') + '">' + (good ? 'Верно.' : 'Не совсем.') + '</b> ' + q.why;
+    why.hidden = false;
+    ex1.answered++; if (good) ex1.correct++;
+    if (ex1.answered === EX1.length) {
+      setState('#ex1State', 'Готово · верно ' + ex1.correct + ' из ' + EX1.length, true);
+      $('#ex1Score').textContent = ex1.correct === EX1.length ? 'Все ответы верные. Отлично!' : 'Верно ' + ex1.correct + ' из ' + EX1.length + '. Перечитайте пояснения к ошибкам.';
+      $('#ex1Foot').hidden = false;
+      setDone(0, true);
+    } else {
+      setState('#ex1State', 'Ответов: ' + ex1.answered + ' из ' + EX1.length, false);
+    }
+  });
+  $('#ex1Reset').addEventListener('click', renderEx1);
+  renderEx1();
+
+  /* ---------- Exercise 2 ---------- */
+  var EX2 = [
+    { pre: 'How', post: 'you like your steak?', ans: ['would'], ru: 'Как вы хотите стейк?' },
+    { pre: '', post: 'you have any allergies?', ans: ['do'], ru: 'У вас есть на что-нибудь аллергия?' },
+    { pre: '', post: 'I get you something to drink?', ans: ['can', 'could', 'may'], ru: 'Принести вам что-нибудь выпить?' },
+    { pre: 'Would you like', post: 'see the dessert menu?', ans: ['to'], ru: 'Хотите посмотреть десертное меню?' },
+    { pre: 'The sea bass', post: 'served with grilled vegetables.', ans: ['is', 'comes'], ru: 'Сибас подаётся с овощами гриль.' }
+  ];
+  function cap(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
+  $('#ex2Body').innerHTML = EX2.map(function(r, i){
+    return '<div class="fill-row"><div class="fill-line" lang="en"><span class="q-n" lang="ru">' + (i + 1) + '</span>' +
+      (r.pre ? '<span>' + r.pre + '</span>' : '') +
+      '<input class="blank" id="blank' + i + '" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Пропуск в предложении ' + (i + 1) + '">' +
+      '<span>' + r.post + '</span></div>' +
+      '<p class="fill-ru">' + r.ru + '</p><p class="fix" id="fix' + i + '" hidden></p></div>';
+  }).join('');
+  function norm(s){ return s.trim().toLowerCase().replace(/[’`]/g, "'").replace(/\s+/g, ' '); }
+  $('#ex2Form').addEventListener('submit', function(e){
+    e.preventDefault();
+    var inputs = EX2.map(function(_, i){ return $('#blank' + i); });
+    var empty = inputs.filter(function(inp){ return !inp.value.trim(); }).length;
+    if (empty) {
+      $('#ex2Msg').textContent = 'Заполните все пропуски: ' + (empty === 1 ? 'остался 1.' : 'осталось ' + empty + '.');
+      inputs.filter(function(inp){ return !inp.value.trim(); })[0].focus();
+      return;
+    }
+    var correct = 0;
+    EX2.forEach(function(r, i){
+      var inp = inputs[i], ok = r.ans.indexOf(norm(inp.value)) !== -1, fix = $('#fix' + i);
+      inp.classList.toggle('ok', ok); inp.classList.toggle('err', !ok);
+      if (ok) { correct++; fix.hidden = true; }
+      else { fix.hidden = false; fix.textContent = 'Правильно: ' + (r.pre ? r.ans[0] : cap(r.ans[0])) + (r.ans.length > 1 ? ' (или ' + r.ans.slice(1).join(', ') + ')' : ''); }
+    });
+    $('#ex2Msg').textContent = correct === EX2.length ? 'Все пропуски заполнены верно!' : 'Верно ' + correct + ' из ' + EX2.length + '. Исправьте ошибки и проверьте ещё раз.';
+    setState('#ex2State', 'Готово · верно ' + correct + ' из ' + EX2.length, true);
+    $('#ex2Reset').hidden = false;
+    setDone(1, true);
+  });
+  $('#ex2Body').addEventListener('input', function(e){
+    if (!e.target.classList.contains('blank')) return;
+    e.target.classList.remove('ok', 'err');
+  });
+  $('#ex2Reset').addEventListener('click', function(){
+    EX2.forEach(function(_, i){ var inp = $('#blank' + i); inp.value = ''; inp.classList.remove('ok', 'err'); $('#fix' + i).hidden = true; });
+    $('#ex2Msg').textContent = 'Заполните пропуски и нажмите «Проверить».';
+    setState('#ex2State', 'Не проверено', false);
+    $('#ex2Reset').hidden = true;
+    setDone(1, false);
+  });
+
+  /* ---------- Exercise 3 ---------- */
+  var EX3 = [
+    { ru: 'Хотите посмотреть десертное меню?', en: 'Would you like to see the dessert menu?' },
+    { ru: 'Всё ли в порядке с вашим блюдом?', en: 'Is everything all right with your meal?' }
+  ];
+  function shuffled(n){
+    var a = [], i, j, t, same = true, guard = 0;
+    for (i = 0; i < n; i++) a.push(i);
+    while (same && guard++ < 20) {
+      for (i = n - 1; i > 0; i--) { j = Math.floor(Math.random() * (i + 1)); t = a[i]; a[i] = a[j]; a[j] = t; }
+      same = a.every(function(v, k){ return v === k; });
+    }
+    return a;
+  }
+  var ex3 = EX3.map(function(s){ var w = s.en.split(' '); return { words: w, order: shuffled(w.length), ans: [], ok: false }; });
+  $('#ex3Body').innerHTML = EX3.map(function(s, k){
+    return '<div class="build" data-k="' + k + '"><p class="q-sit"><span class="q-n">' + (k + 1) + '</span>' + s.ru + '</p>' +
+      '<div class="answer" lang="en"></div><div class="bank" lang="en"></div>' +
+      '<div class="build-foot"><p class="build-msg" aria-live="polite"></p><button type="button" class="link-btn b-reset">Начать заново</button></div></div>';
+  }).join('');
+  function renderBuild(k){
+    var st = ex3[k], box = $('.build[data-k="' + k + '"]');
+    var ansEl = $('.answer', box), bankEl = $('.bank', box), msg = $('.build-msg', box);
+    ansEl.innerHTML = st.ans.map(function(id){ return '<button type="button" class="wchip" data-id="' + id + '" data-from="ans"' + (st.ok ? ' disabled' : '') + '>' + esc(st.words[id]) + '</button>'; }).join('');
+    bankEl.innerHTML = st.order.filter(function(id){ return st.ans.indexOf(id) === -1; })
+      .map(function(id){ return '<button type="button" class="wchip" data-id="' + id + '" data-from="bank">' + esc(st.words[id]) + '</button>'; }).join('');
+    ansEl.classList.remove('ok', 'err'); msg.innerHTML = '';
+    if (st.ans.length === st.words.length) {
+      var built = st.ans.map(function(id){ return st.words[id]; }).join(' ');
+      st.ok = built === EX3[k].en;
+      if (st.ok) {
+        ansEl.classList.add('ok');
+        $$('.wchip', ansEl).forEach(function(b){ b.disabled = true; });
+        msg.innerHTML = '<b class="t-ok">Верно!</b> Послушайте, как это звучит ' + sayBtn(EX3[k].en);
+      } else {
+        ansEl.classList.add('err');
+        msg.innerHTML = '<span class="t-err">Порядок неверный.</span> Нажмите на слово в строке, чтобы вернуть его.';
+      }
+    }
+    var n = ex3.filter(function(s){ return s.ok; }).length;
+    setState('#ex3State', n === ex3.length ? 'Готово' : 'Собрано ' + n + ' из ' + ex3.length, n === ex3.length);
+    setDone(2, n === ex3.length);
+  }
+  $('#ex3Body').addEventListener('click', function(e){
+    var box = e.target.closest('.build'); if (!box) return;
+    var k = +box.getAttribute('data-k'), st = ex3[k];
+    if (e.target.closest('.b-reset')) { st.ans = []; st.ok = false; st.order = shuffled(st.words.length); renderBuild(k); return; }
+    var chip = e.target.closest('.wchip'); if (!chip || chip.disabled) return;
+    var id = +chip.getAttribute('data-id');
+    if (chip.getAttribute('data-from') === 'bank') st.ans.push(id);
+    else st.ans.splice(st.ans.indexOf(id), 1);
+    renderBuild(k);
+    var again = $('.wchip[data-id="' + (st.order.filter(function(x){ return st.ans.indexOf(x) === -1; })[0]) + '"]', box);
+    if (again && document.activeElement === document.body) again.focus();
+  });
+  ex3.forEach(function(_, k){ renderBuild(k); });
+
+  /* ---------- Exercise 4 ---------- */
+  var EX4 = [
+    { sit: 'Гость говорит, что у него аллергия на орехи, и спрашивает про десерты.',
+      en: 'Thank you for letting me know. The chocolate cake contains nuts, but the mango sorbet is nut-free. I’ll also tell the kitchen about your allergy.',
+      keys: ['Thank you for letting me know', 'contains nuts', 'nut-free'] },
+    { sit: 'Гостья жалуется, что суп остыл.',
+      en: 'I’m so sorry about that. Let me take it back to the kitchen and bring you a hot one right away.',
+      keys: ['I’m so sorry about that', 'Let me…', 'right away'] },
+    { sit: 'Гости хотят столик на террасе, но там всё занято.',
+      en: 'I’m afraid the terrace is fully booked at the moment. I can offer you a table by the window, or I can let you know as soon as a terrace table is free.',
+      keys: ['I’m afraid…', 'fully booked', 'as soon as'] }
+  ];
+  var ex4 = EX4.map(function(){ return false; });
+  $('#ex4Body').innerHTML = EX4.map(function(s, k){
+    return '<div class="say" data-k="' + k + '"><p class="q-sit"><span class="q-n">' + (k + 1) + '</span>' + s.sit + '</p>' +
+      '<div class="say-actions"><button type="button" class="btn ghost sm reveal" aria-expanded="false" aria-controls="model' + k + '">Показать пример ответа</button>' +
+      '<button type="button" class="btn ghost sm mark-btn" aria-pressed="false">Отметить: проговорено вслух</button></div>' +
+      '<div class="model" id="model' + k + '" hidden><div class="model-line"><p lang="en">' + s.en + '</p>' + sayBtn(s.en, 'пример ответа ' + (k + 1)) + '</div>' +
+      '<div class="keys"><span>Ключевые фразы:</span>' + s.keys.map(function(x){ return '<span class="key" lang="en">' + x + '</span>'; }).join('') + '</div></div></div>';
+  }).join('');
+  $('#ex4Body').addEventListener('click', function(e){
+    var box = e.target.closest('.say'); if (!box) return;
+    var k = +box.getAttribute('data-k');
+    var rv = e.target.closest('.reveal');
+    if (rv) {
+      var m = $('.model', box), open = m.hidden;
+      m.hidden = !open; rv.setAttribute('aria-expanded', String(open));
+      rv.textContent = open ? 'Скрыть пример' : 'Показать пример ответа';
+      return;
+    }
+    var mk = e.target.closest('.mark-btn');
+    if (mk) {
+      ex4[k] = !ex4[k];
+      mk.setAttribute('aria-pressed', String(ex4[k]));
+      mk.innerHTML = ex4[k] ? I.ok + ' Проговорено' : 'Отметить: проговорено вслух';
+      var n = ex4.filter(Boolean).length;
+      setState('#ex4State', n === ex4.length ? 'Готово' : 'Проговорено ' + n + ' из ' + ex4.length, n === ex4.length);
+      setDone(3, n === ex4.length);
+    }
+  });
+
+  /* ---------- Mistakes ---------- */
+  var MISTAKES = [
+    { tag: 'Грамматика', f: 5, title: 'Вопрос без вспомогательного глагола',
+      bad: 'How you want your steak?', good: 'How would you like your steak?',
+      why: 'В русском вопрос задаётся интонацией. В английском перед подлежащим нужен помощник: <i lang="en">do, are, would</i>.' },
+    { tag: 'Вежливость', f: 4, title: 'Want в разговоре с гостем',
+      bad: 'What do you want to drink?', good: 'What would you like to drink?',
+      why: '<i lang="en">Want</i> звучит слишком прямо, почти грубо. В сервисе говорим <i lang="en">would like</i>.' },
+    { tag: 'Грамматика', f: 4, title: 'Пропущенный артикль',
+      bad: 'I recommend fish of the day.', good: 'I’d recommend the fish of the day.',
+      why: 'Конкретное блюдо из меню идёт с <i lang="en">the</i>. Одно из многих — с <i lang="en">a</i>: <i lang="en">a glass of red wine</i>.' },
+    { tag: 'Лексика', f: 3, title: 'Гарнир — это не garnish',
+      bad: 'What garnish would you like?', good: 'What side would you like with that?',
+      why: '<i lang="en">Garnish</i> — это украшение блюда, например веточка петрушки. Гарнир по-английски — <i lang="en">side dish</i> или просто <i lang="en">side</i>.' },
+    { tag: 'Грамматика', f: 2, trend: 'Реже: в октябре было 4 из 5', title: 'Обещание без will',
+      bad: 'I bring you some water.', good: 'I’ll bring you some water.',
+      why: 'Когда обещаете сделать что-то прямо сейчас, говорите <i lang="en">I’ll</i> (<i lang="en">I will</i>).' },
+    { tag: 'Произношение', f: 1, trend: 'Реже: в октябре было 3 из 5', title: 'Dessert и desert',
+      badHtml: '<span lang="en">desert</span> <span class="ipa">/ˈdezət/</span> — пустыня', badSay: 'desert',
+      goodHtml: '<span lang="en">dessert</span> <span class="ipa">/dɪˈzɜːt/</span> — десерт', goodSay: 'dessert',
+      why: 'В слове <i lang="en">dessert</i> ударение падает на второй слог. Иначе вы предложите гостю пустыню.' }
+  ];
+  $('#mList').innerHTML = MISTAKES.map(function(m){
+    var dots = '';
+    for (var i = 0; i < 5; i++) dots += '<i class="' + (i < m.f ? 'on' : '') + '"></i>';
+    var badInner = m.badHtml ? m.badHtml : '<span lang="en">' + m.bad + '</span>';
+    var goodInner = m.goodHtml ? m.goodHtml : '<span lang="en">' + m.good + '</span>';
+    return '<li class="mrow"><div class="m-meta"><span class="tag">' + m.tag + '</span><p class="m-title">' + m.title + '</p>' +
+      '<div class="freq" aria-label="Встречалась на ' + m.f + ' из 5 последних уроков">' + dots + '<span>' + m.f + ' из 5</span></div>' +
+      (m.trend ? '<span class="trend">↓ ' + m.trend + '</span>' : '') + '</div>' +
+      '<div class="m-pair">' +
+        '<p class="bad"><span class="ico" aria-label="Неправильно">' + I.x + '</span><span class="txt">' + badInner + '</span>' + (m.badSay ? sayBtn(m.badSay, 'desert, пустыня') : '') + '</p>' +
+        '<p class="good"><span class="ico" aria-label="Правильно">' + I.ok + '</span><span class="txt">' + goodInner + '</span>' + sayBtn(m.goodSay || m.good) + '</p>' +
+        '<p class="m-why">' + m.why + '</p>' +
+      '</div></li>';
+  }).join('');
+
+  /* ---------- Words ---------- */
+  var WORDS = [
+    { en: 'reservation', ipa: '/ˌrezəˈveɪʃn/', ru: 'бронирование столика' },
+    { en: 'side dish', ipa: '/ˈsaɪd dɪʃ/', ru: 'гарнир' },
+    { en: 'rare · medium · well-done', say: 'rare, medium, well-done', ipa: '/reə/ · /ˈmiːdiəm/ · /ˌwel ˈdʌn/', ru: 'с кровью · средней прожарки · хорошо прожаренный' },
+    { en: 'dish of the day', ipa: '/ˌdɪʃ əv ðə ˈdeɪ/', ru: 'блюдо дня' },
+    { en: 'to be allergic to', ipa: '/əˈlɜːdʒɪk/', ru: 'иметь аллергию на…' },
+    { en: 'gluten-free', ipa: '/ˈɡluːtn friː/', ru: 'без глютена' },
+    { en: 'still · sparkling water', say: 'still water, sparkling water', ipa: '/stɪl/ · /ˈspɑːklɪŋ/', ru: 'вода без газа · с газом' },
+    { en: 'to run out of', ipa: '/rʌn ˈaʊt əv/', ru: 'закончиться (о продуктах)' },
+    { en: 'complimentary', ipa: '/ˌkɒmplɪˈmentri/', ru: 'за счёт заведения, бесплатно' },
+    { en: 'the bill', ipa: '/bɪl/', ru: 'счёт' },
+    { en: 'tip', ipa: '/tɪp/', ru: 'чаевые' },
+    { en: 'napkin', ipa: '/ˈnæpkɪn/', ru: 'салфетка' }
+  ];
+  $('#wCount').textContent = WORDS.length + ' ' + plural(WORDS.length, 'слово', 'слова', 'слов') + ' и выражений';
+  $('#wList').innerHTML = WORDS.map(function(w, i){
+    return '<li class="wrow"><span class="w-en" lang="en">' + w.en + '<span class="ipa">' + w.ipa + '</span></span>' +
+      '<button type="button" class="w-ru" id="wru' + i + '" tabindex="-1">' + w.ru + '</button>' + sayBtn(w.say || w.en) + '</li>';
+  }).join('');
+  var quiz = $('#quizToggle');
+  quiz.addEventListener('change', function(){
+    var on = quiz.checked;
+    $('#wList').classList.toggle('quiz', on);
+    $$('.w-ru').forEach(function(b){ b.classList.remove('shown'); b.tabIndex = on ? 0 : -1; b.setAttribute('aria-label', on ? 'Показать перевод' : b.textContent); if (!on) b.removeAttribute('aria-label'); });
+  });
+  $('#wList').addEventListener('click', function(e){
+    var b = e.target.closest('.w-ru');
+    if (!b || !quiz.checked) return;
+    b.classList.toggle('shown');
+    if (b.classList.contains('shown')) b.removeAttribute('aria-label'); else b.setAttribute('aria-label', 'Показать перевод');
+  });
+})();
+</script>
+</body>
+</html>

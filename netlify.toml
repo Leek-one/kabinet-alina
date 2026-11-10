@@ -1,0 +1,4 @@
+# Page statique : rien à compiler, on publie le dossier tel quel.
+[build]
+  publish = "."
+  command = "echo 'Page statique, rien à compiler'"
